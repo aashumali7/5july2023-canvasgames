@@ -20,7 +20,41 @@
 
       canvas.width = window.innerWidth-15;
       canvas.height = window.innerHeight-10;
-      var ctx = canvas.getContext("2d");
+      console.log('*',window.innerHeight-10);
+      console.log('*',(window.innerHeight-10)*0.8);
+      let ch80 = (window.innerHeight-10)*0.8;
+       var ctx = canvas.getContext("2d");
+    
+       // set the initial position of ractangle
+       console.log('random',Math.ceil(Math.random(0,1)*1200))
+       var xx = 500;
+       var yy = -150;
+
+       // set the animation speed
+       var speed = 2;
+
+       function draw(){
+        //clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        //draw the rectangle
+        ctx.fillStyle = "orange";
+        ctx.fillRect(xx, yy, 150, 150); //drew the rectangle (x,y,width,height)
+
+        // update the position
+        if(yy <= ch80-150){
+          yy += speed;
+        }
+        console.log(yy);
+       
+    
+        //requst the animation frame 
+        requestAnimationFrame(draw);
+       }
+
+       // start the animation
+       draw();
+
 
       // Define explosion properties
       var particles = [];
@@ -91,7 +125,8 @@
         // Play explosion animation
         var x = Math.random() * canvas.width;
         var y = Math.random() * canvas.height;
-        explode(200,200);
+        console.log('yy->',yy);
+        explode(xx,yy);
         drawExplosion();
       });
     </script>
